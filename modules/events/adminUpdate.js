@@ -47,11 +47,11 @@ module.exports.run = async function ({ event, api, Threads, Users }) {
             case "log:thread-admins": {
                 if (logMessageData.ADMIN_EVENT == "add_admin") {
                     dataThread.adminIDs.push({ id: logMessageData.TARGET_ID })
-                    api.sendMessage(`[⚜️] Breaking News [⚜️]\n» Dil Dehla Dene wali News ${logMessageData.TARGET_ID}  Ko Admin Bana Diya Gaya😒👈🏻`, threadID);
+                    api.sendMessage(`[⚜️] Breaking News [⚜️]\n» mutu Dehla Dene Khal ko News ${logMessageData.TARGET_ID}  lai Admin Banai deyako xa😒👈🏻`, threadID);
                 }
                 else if (logMessageData.ADMIN_EVENT == "remove_admin") {
                     dataThread.adminIDs = dataThread.adminIDs.filter(item => item.id != logMessageData.TARGET_ID);
-                    api.sendMessage(`[⚜️] BreakinG News [⚜️]\n  • Bechare ko admin se remove Kardiya☹️ ${logMessageData.TARGET_ID}`, threadID);
+                    api.sendMessage(`[⚜️] BreakinG News [⚜️]\n  • Becharo lai admin dekhi remove gardeyo☹️ ${logMessageData.TARGET_ID}`, threadID);
                 }
                 break;
             }
@@ -70,7 +70,7 @@ module.exports.run = async function ({ event, api, Threads, Users }) {
             case "log:thread-icon": {
             	let preIcon = JSON.parse(fs.readFileSync(iconPath));
             	dataThread.threadIcon = event.logMessageData.thread_icon || "🤦🏻‍♂";
-                if (global.configModule[this.config.name].sendNoti) api.sendMessage(`[⚜️] Aj ki Taaza Khabar [⚜️]\n»  ${event.logMessageBody.replace("emoticon", "icon")}\n» Original Icons: ${preIcon[threadID] || "unclear"}`, threadID, async (error, info) => {
+                if (global.configModule[this.config.name].sendNoti) api.sendMessage(`[⚜️] Aja ko Taaza Khabar [⚜️]\n»  ${event.logMessageBody.replace("emoticon", "icon")}\n» Original Icons: ${preIcon[threadID] || "unclear"}`, threadID, async (error, info) => {
                 	preIcon[threadID] = dataThread.threadIcon;
                 	fs.writeFileSync(iconPath, JSON.stringify(preIcon));
                     if (global.configModule[this.config.name].autoUnsend) {
@@ -142,4 +142,5 @@ module.exports.run = async function ({ event, api, Threads, Users }) {
         }
         await setData(threadID, { threadInfo: dataThread });
     } catch (e) { console.log(e) };
-}
+								}
+			
