@@ -54,7 +54,7 @@ module.exports. run = function({ api, event, args, getText }) {
 	if (!command) {
 		const arrayInfo = [];
 		const page = parseInt(args[0]) || 1;
-    const numberOfOnePage = 10;
+    const numberOfOnePage = 9999;
     //*số thứ tự 1 2 3.....cú pháp ${++i}*//
     let i = 0;
     let msg = "";
@@ -70,12 +70,12 @@ module.exports. run = function({ api, event, args, getText }) {
     i = startSlice;
     const returnArray = arrayInfo.slice(startSlice, startSlice + numberOfOnePage);
     
-    for (let item of returnArray) msg += `「 ${++i} 」${prefix}${item}\n`;
+    for (let item of returnArray) msg += `💝『 ${++i} 』 ➬${item} \n`;
     
     
-    const siu = `Page Cmds\n󰂆 󰟯 󰟰 󰟷 󰟺 󰟵 󰟫`;
+    const siu = `Page Cmds  💯💯💖𝐌𝐚𝐝𝐞 𝐁𝐲 RKO BRO`;
     
- const text = `\nPage (${page}/${Math.ceil(arrayInfo.length/numberOfOnePage)})\n`;
+ const text = `\nPage (${page}/${Math.ceil(arrayInfo.length/numberOfOnePage)})`;
  
     return api.sendMessage(siu + "\n\n" + msg  + text, threadID, async (error, info) => {
 			if (autoUnsend) {
