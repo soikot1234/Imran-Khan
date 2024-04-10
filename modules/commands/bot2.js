@@ -22,7 +22,7 @@ module.exports.handleEvent = async function({ api, event, args, Threads, Users }
    };
 
     if ((event.body.toLowerCase() == "😘") || (event.body.toLowerCase() == "😽")) {
-     return api.sendMessage("Abeyy oyee berojgaar brush grera aija paila😒", threadID);
+     return api.sendMessage("Abeyy oyee berojgaar brush grera aija paila😒😬", threadID);
    };
 
     if ((event.body.toLowerCase() == "👍") || (event.body.toLowerCase() == "👍🏻")) {
