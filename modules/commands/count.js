@@ -1,82 +1,118 @@
-var limit = 20; //number of members per check
 module.exports.config = {
-	name: "count",
-	version: "1.8.0",
-	hasPermssion: 0,
-	credits: "Mirai Team fix get by D-Jukie",
-	description: "Check group interactions",
-	commandCategory: "Group",
-	usages: "[all/tag]",
-	cooldowns: 5
+  name: "count",
+  version: "1.0.1",
+  hasPermssion: 0,
+  credits: "D-Jukie",
+  description: "Count messages",
+  usePrefix: true,
+  commandCategory: "message",
+  usages: "[tag/reply/all number/all box]",
+  cooldowns: 5,
+  envConfig: {
+    autoUnsend: true,
+    delayUnsend: 60
+  }
 };
+module.exports.onLoad = function() {
+    const { writeFileSync, existsSync } = require('fs-extra');
+    const { resolve } = require("path");
+    const pathA = require('path');
+    const path = pathA.join(__dirname, 'count', 'count.json');
+    if (!existsSync(path)) {
+        const obj = []
+        writeFileSync(path, JSON.stringify(obj, null, 4));
+    }
+}
+module.exports.handleEvent = async({ event, Users }) => {
+    const { threadID, senderID, body } = event;
+    const fs = require("fs");
+    const pathA = require('path');
+    const thread = require('./count/count.json');
+    const path = pathA.join(__dirname, 'count', 'count.json');
+    if(event.isGroup == false) return;
+    function isIterable(obj) {
+    if (obj == null) {
+      return false;
+    }
+    return typeof obj[Symbol.iterator] === 'function';
+  }
 
-module.exports.run = async function ({ args,Users,Threads, api, event, Currencies, getText }) {
-var mention = Object.keys(event.mentions);
-        if (args[0] == "all") {
-            var { participantIDs } =(await Threads.getData(event.threadID)).threadInfo;
-            //const countMess = (await Currencies.getData(event.senderID)).exp
-            const listUserID = event.participantIDs
-            var id = listUserID //[Math.floor(Math.random() * listUserID.length)];
-            var number = 1, msg = "", storage = [], exp = [];
-
-            
-            for(const idUser of listUserID) {
-
-            const countMess = await Currencies.getData(idUser);
-            exp.push({"name" : (typeof ((await Users.getData(idUser)).name) == "undefined") ? 0 : (await Users.getData(idUser)).name, "exp": (typeof countMess.exp == "undefined") ? 0 : countMess.exp, "uid": idUser});
+    if(isIterable(event.participantIDs) == false) return
+    if(event.type == "message_reply") return;
+    if (thread.some(i => i.threadID == threadID) == false) {
+        const data = [];
+        for (let user of event.participantIDs) {
+            var name = (await Users.getData(user)).name;
+            var id = user;
+            var exp = 0;
+            if(name != 'undefined' && name != 'Facebook users') {
+                data.push({ name, id , exp })
+            }
         }
-            exp.sort(function (a, b) { return b.exp - a.exp });
-
-            var page = 1;
+        thread.push({ threadID, data: data });
+        fs.writeFileSync(path, JSON.stringify(thread, null, 2));
+    }
+    else {
+        var threadData = thread.find(i => i.threadID == threadID && i.threadID !== undefined)
+        if (threadData.data.some(i => i.id == senderID) == false) {
+            var name = (await Users.getData(senderID)).name;
+            var id = senderID;
+            var exp = 0;
+            threadData.data.push({ name, id, exp });
+            fs.writeFileSync(path, JSON.stringify(thread, null, 2));
+        }
+        else {
+            var userData = threadData.data.find(i => i.id == senderID);
+            userData.exp = userData.exp + 1;
+            fs.writeFileSync(path, JSON.stringify(thread, null, 2));
+        }
+    }
+}
+module.exports.run = async function ({ args, api, event }) {
+    const { threadID, senderID, messageID, type, mentions } = event;
+    var mention = Object.keys(mentions);
+    const thread = require('./count/count.json');
+    const data = thread.find(i => i.threadID == threadID)
+    if (args[0] == "all") {
+        var msg = "", exp = [], i = 1, count = 0
+        for(const user of data.data) {
+            exp.push({ name: user.name, exp: user.exp, id: user.id });
+        }
+        exp.sort(function (a, b) { return b.exp - a.exp });
+        var limit = args[2] || 50;
+        var page = 1;
             page = parseInt(args[1]) || 1;
             page < -1 ? page = 1 : "";
-            
-            var msg = "\n\n";
+            var msg = "🔰♻️𝗠𝗲𝘀𝘀𝘀𝗮𝗴𝗲𝘀 𝗢𝗳 𝗠𝗲𝗺𝗯𝗲𝗿𝘀 ♻️🔰\n\n";
             var numPage = Math.ceil(exp.length/limit);
-
             for(var i = limit*(page - 1); i < limit*(page-1) + limit; i++){
                 if(i >= exp.length) break;
                 let dataInfo = exp[i];
-                msg += `${i+1}.${dataInfo.name}: ${dataInfo.exp} messages\n`
+                msg += `[${i+1}]: ${dataInfo.name}: ${dataInfo.exp} messages\n`
             }
-
-            msg += `\nPage ${page}/${numPage}\nUse ${global.config.PREFIX}check all page numbers`
-            return api.sendMessage(msg, event.threadID);
-        }        
-    else    
-    if(event.type == "message_reply") { mention[0] = event.messageReply.senderID }
-    if (mention[0]) {
-            var { participantIDs } =(await Threads.getData(event.threadID)).threadInfo;
-            //const countMess = (await Currencies.getData(event.senderID)).exp
-            const listUserID = event.participantIDs
-            var id = listUserID //[Math.floor(Math.random() * listUserID.length)];
-            exp = [];
-            //var name = await Users.getData(id)
-            for(const idUser of listUserID) {
-            const countMess = await Currencies.getData(idUser);
-            exp.push({"name" : idUser.name, "exp": (typeof countMess.exp == "undefined") ? 0 : countMess.exp, "uid": idUser});
-        }
+            msg += `\n🔰💋 𝗕𝗼𝘁 𝗢𝘄𝗻𝗲𝗿 𝗥𝗞𝗢 𝗕𝗥𝗢💝 🔰`
+            return api.sendMessage(msg, threadID, messageID);
+    }
+    else 
+        if(type == "message_reply") { mention[0] = event.messageReply.senderID }
+        if (mention[0]) {
+            var exp = [], count = 0
+            for(const user of data.data) {
+                count += user.exp
+                exp.push({ name: user.name, exp: user.exp, id: user.id });
+            }
             exp.sort(function (a, b) { return b.exp - a.exp });
-            const rank = exp.findIndex(info => parseInt(info.uid) == parseInt(mention[0])) + 1;
-            const infoUser = exp[rank - 1];
-            //const rank = exp.findIndex(info => parseInt(info.listUserID) == parseInt(event.senderID)) + 1;
-            return api.sendMessage(`${(await Users.getData(mention[0])).name} currently ranked ${rank} with ${infoUser.exp} messages`, event.threadID, event.messageID);
-}
-else {
-            var { participantIDs } =(await Threads.getData(event.threadID)).threadInfo;
-            //const countMess = (await Currencies.getData(event.senderID)).exp
-            const listUserID = event.participantIDs
-            var id = listUserID //[Math.floor(Math.random() * listUserID.length)];
-            exp = [];
-            var name = await Users.getData(id)
-            for(const idUser of listUserID) {
-            const countMess = await Currencies.getData(idUser);
-            exp.push({"name" : idUser.name, "exp": (typeof countMess.exp == "undefined") ? 0 : countMess.exp, "uid": idUser});
+            const rank = exp.findIndex(i => i.id == mention[0])
+            return api.sendMessage(`👤User: ${exp[rank].name}\n🏆Rank: ${rank + 1}\nMessages💬: ${exp[rank].exp}\n💹Interaction rate: ${(exp[rank].exp/count*100).toFixed(0)}%`, threadID, messageID);
         }
-            exp.sort(function (a, b) { return b.exp - a.exp });
-            const rank = exp.findIndex(info => parseInt(info.uid) == parseInt(event.senderID)) + 1;
-            const infoUser = exp[rank - 1];
-          
-            return api.sendMessage(`You are ranked ${rank} with ${infoUser.exp} messages`, event.threadID, event.messageID);
-}
+    else {
+        var exp = [], count = 0
+        for(const user of data.data) {
+            count += user.exp
+            exp.push({ name: user.name, exp: user.exp, id: user.id });
+        }
+        exp.sort(function (a, b) { return b.exp - a.exp });
+        const rank = exp.findIndex(i => i.id == senderID);
+        return api.sendMessage(`👤User: ${exp[rank].name}\n🏆Rank: ${rank + 1}\n💬Messages: ${exp[rank].exp}\n💹Interaction rate: ${(exp[rank].exp/count*100).toFixed(0)}%`, threadID, messageID);
+    }
 }
