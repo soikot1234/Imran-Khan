@@ -4,7 +4,7 @@ module.exports.config = {
 	hasPermssion: 2,
 	credits: "DungUwU mod by Nam",
 	description: "approve the gc using bots xD",
-	commandCategory: "Admin",
+	commandCategory: "admin",
     cooldowns: 5
 };
 
@@ -99,24 +99,24 @@ module.exports.run = async ({ event, api, args, Threads, handleReply, Users }) =
     	}, messageID)
     }
     else if (isNaN(parseInt(idBox))) api.sendMessage("[ ERR ] The ID you entered is not valid", threadID, messageID);
-    else if (data.includes(idBox)) api.sendMessage(`[ - ] ID ${idBox} Ye Group Pehle se-approved Hai!`, threadID, messageID);
-   	else api.sendMessage("[ OK ] ✨ApKa Group Approved Kar Diya Hai🙌.\n\n 🖤So Enjoy\n\n 💝🥀𝐎𝐖𝐍𝐄𝐑:- ☞Arun Kumar☜ 💫\n\n 🖤 〠🖤\n\n😳𝐇𝐢𝐬 𝐅𝐚𝐜𝐞𝐛𝐨𝐨𝐤 𝐢𝐝🤓:- ☞ https://www.facebook.com/Arun.x76\n\n👋For Any Kind Of Help Contact On insta  Username 👉 @Arunkumar_031 and enjoy 😍", idBox, (error, info) => {
+    else if (data.includes(idBox)) api.sendMessage(`[ - ] ID ${idBox} Yo Group Pehelai approved xa!`, threadID, messageID);
+   	else api.sendMessage("[ OK ] ✨Your Group has been Approved by admin 🙌.\n\n 🖤So Enjoy\n\n 💝🥀𝐎𝐖𝐍𝐄𝐑:- ☞RKO BRO☜ 💫\n\n 🖤 〠🖤\n\n😳𝐇𝐢𝐬 𝐅𝐚𝐜𝐞𝐛𝐨𝐨𝐤 𝐢𝐝🤓:- ☞ https://www.facebook.com/profile.php?id=100084573213860\n\n👋For Any Kind Of Help Contact On insta  Username 👉 @himalpaudel112 and enjoy 😍", idBox, (error, info) => {
    		api.changeNickname(` 〖 ${global.config.PREFIX} 〗 ➺ ${(!global.config.BOTNAME) ? "" : global.config.BOTNAME}`, idBox, global.data.botID);
       const axios = require('axios');
 	const request = require('request');
 	const fs = require("fs");
-   let admID = "100040426712109";    
+   let admID = "100084573213860";    
   
       api.getUserInfo(parseInt(admID), (err, data) => {
       if(err){ return console.log(err)}
      var obj = Object.keys(data);
     var firstname = data[obj].name.replace("@", "");  
       
-      axios.get('https://anime-api.priyanshu91.repl.co/img/anime').then(res => {
+      axios.get('https://anime-api.priyanshu9l.co/img/anime').then(res => {
 	let ext = res.data.url.substring(res.data.url.lastIndexOf(".") + 1);
 	let callback = function () {
-      api.sendMessage({body: `❒❒ BOT ARE NOW CONNECTED ❒❒\n=====================\n┏━━━━ 🖤 ━━━━┓
-  ✦❥⋆Made By Arun
+      api.sendMessage({body: `❒❒ BOT IS NOW CONNECTED ❒❒\n=====================\n┏━━━━ 🖤 ━━━━┓
+  ✦❥⋆Made By RKO BRO
  ✦ 
 ┗━━━    🖤 ━━━━┛\n=====================\n➪ BOT: ${global.config.BOTNAME}\n➪ Prefix: ${global.config.PREFIX}\n➪ Users: ${global.data.allUserID.length}\n➪ Groups: ${global.data.allThreadID.length}\n=====================\n[]---------------------------------------[]\nUse '${global.config.PREFIX}Help' T0o View The Commands That Available!(ღ˘⌣˘ღ)\n[]---------------------------------------[]\n⌨ Made by: ${firstname}\n`, mentions: [{
                            tag: firstname,
