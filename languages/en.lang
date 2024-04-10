@@ -7,18 +7,18 @@
 
 mirai.errorFormat=Malformed module!
 mirai.nameExist=Module's name is similar to another module!
-mirai.notFoundLanguage=Module %1 , tumhari language support nahi karta baby
+mirai.notFoundLanguage=Module %1 , timro laguage support gardaina  baby🥺
 mirai.notFoundPackage=Can't find package %1 support for module %2, installing...
 mirai.cantInstallPackage=Can't install package %1 for module %2, error: %3
-mirai.loadedPackage=IApka sara package install hogya h %1
+mirai.loadedPackage=Timro sabai package install vayo %1
 mirai.loadedConfig=Installed config successfully for module %1
 mirai.cantLoadConfig=Can't install config of module %1, error: %2
 mirai.cantOnload=Can't launch setup of module %1, error: %1
 mirai.successLoadModule=Successfully installed module %1
 mirai.failLoadModule=Can't install module %1, error: %2
 mirai.finishLoadModule=Installed %1 module commands and %2 module events successfully 
-mirai.foundPathAppstate=Appstate mil gyA bot ab login Kar raha h...
-mirai.notFoundPathAppstate=Baby apki appstate wrong hai, please right fbstate ki copy paste kro!
+mirai.foundPathAppstate=Appstate vateyo aba login gardai xa💝...
+mirai.notFoundPathAppstate=Bro timro  appstate wrong xa, please right fbstate  copy paste gara💝!
 mirai.checkListGban=Checking global ban list...
 mirai.banDevice=Your device have been banned from miraiproject, please contact to facebook https://fb.me/catalizcs to know more information or asking for unban key, if you already have unban key, please fill it below.
 mirai.keyNotSameFormat=Wrong format, code must contain 6 number.
@@ -58,14 +58,15 @@ users.needObject=Have to be an Object
 
 # includes/handle/handleCommand.js
 
-handleCommand.userBanned=⛔️~Tu Banned Hai Re 🤭!~🚫\n%1\n%2\nContact B0T Owner ArunKumar🖤 For Unban ⚠️
-handleCommand.threadBanned=⛔️Your Thread/Box/Group Has Been Banned!⛔️\n%1\n%2 Please Contact Owner Arun Kumar For Unban ⚠️
-handleCommand.commandNotExist=𝗣𝗲𝗵𝗹𝗲 𝗡𝗮𝘀𝗵𝗲 𝗕𝗮𝗻𝗱 𝗞𝗮𝗿𝗼 𝗙𝗶𝗿 𝗖𝗼𝗺𝗺𝗮𝗻𝗱 𝗗𝗲𝗻𝗮🫠 𝗖𝗵𝗮𝗹 𝗕𝗮𝘁𝗮😗 + %1 ya 𝐟𝐢𝐫 +𝗛𝗲𝗹𝗽2 🙄
+handleCommand.userBanned=⛔️~TMI BAN XAU🤭!~🚫\n%1\n%2\nContact B0T Owner RKO BRO🖤 For Unban ⚠️Id:https://www.facebook.com/profile.php?id=100084573213860💝
+handleCommand.threadBanned=⛔️Your Thread/Box/Group Has Been Banned!⛔️\n%1\n%2 Please Contact Owner RKO BRO For Unban⚠️
+Id:https://www.facebook.com/profile.php?id=100084573213860💝
+handleCommand.commandNotExist=㋡𝐒𝐨𝐫𝐫𝐲 wrong command☠, 😾 vana khojeko yo  %1 navaya /help lekha💝
 handleCommand.commandThreadBanned=Your thread is unable to use command "%1"
 handleCommand.commandUserBanned=You are unable to use command "%1"
 handleCommand.threadNotAllowNSFW=Your thread is not allowed to use NSFW commands
 handleCommand.cantGetInfoThread=Can't get your thread's info, error: %1
-handleCommand.permssionNotEnough=📑𝘠𝘦 🙂"%1" 𝘤𝘰𝘮𝘮𝘢𝘯𝘥 𝘔𝘦𝘳𝘦 𝘈𝘥𝘮𝘪𝘯𝘴 𝘬𝘰 𝘩𝘪 𝘈𝘭𝘭𝘰𝘸 𝘩𝘢𝘪
+handleCommand.permssionNotEnough=📑This Command Only Allow For My Boss RKO BRO 👽☠ 🙂"%1"
 handleCommand.cantSetMessageReaction=Having some unexpected error at setMessageReaction, error: %1
 handleCommand.executeCommand=[ %1 ] Command used: %2 by user: %3 at thread: %4 | Args included: %5 | Processing time: %6ms
 handleCommand.commandError=Having some unexpected error when using command %1, error: %2
@@ -100,4 +101,4 @@ handleSchedule.exectuteError=Having some error when schedule at module %1, error
 
 # utils/index.js
 
-utils.throwError=ℹ️ [!] Ye Command Kaam Nahi Kar Raha Koi Dosra Try Karo, %1help %2 Use For More usage 😉 ℹ️
+utils.throwError=ℹ️ [!] Yo Command Kaam garya xina Koi aru Try gara, %1help %2 Use For More usage 😉 ℹ️
