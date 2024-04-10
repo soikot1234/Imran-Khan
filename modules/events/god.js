@@ -15,23 +15,23 @@ module.exports.run = async function({ api, event, Threads }) {
     var formReport =  "= Chugli Time =" +
                         "\n\n»  Group ID: " + event.threadID +
                         "\n» Action: {task}" +
-                        "\n» Uski Uid : " + event.author +
+                        "\n» Usko Uid : " + event.author +
                         "\n» " + Date.now() +" «",
         task = "";
     switch (event.logMessageType) {
         case "log:thread-name": {
-            const oldName = (await Threads.getData(event.threadID)).name || "𝐖𝐨 𝐭𝐨 𝐁𝐡𝐮𝐥 𝐆𝐚𝐲𝐢",
-                    newName = event.logMessageData.name || "𝐘𝐚𝐚𝐝 𝐍𝐚𝐡𝐢";
-            task = "User changes group name from: '" + oldName + "' Lekin New Naam '" + newName + "'hai";
+            const oldName = (await Threads.getData(event.threadID)).name || "tyo ta vulya yar",
+                    newName = event.logMessageData.name || "yaad xina";
+            task = "User changes group name from: '" + oldName + "' tra New Name '" + newName + "'ho";
             await Threads.setData(event.threadID, {name: newName});
             break;
         }
         case "log:subscribe": {
-            if (event.logMessageData.addedParticipants.some(i => i.userFbId == api.getCurrentUserID())) task = "Mujhe kisi ne new group Me add kiya";
+            if (event.logMessageData.addedParticipants.some(i => i.userFbId == api.getCurrentUserID())) task = "Malai koi le new group Ma add garyo❣";
             break;
         }
         case "log:unsubscribe": {
-            if (event.logMessageData.leftParticipantFbId== api.getCurrentUserID()) task = "𝐃𝐞𝐤𝐡𝐨 𝐛𝐚𝐛𝐮 𝐈𝐬𝐧𝐞 𝐦𝐮𝐣𝐡𝐞 𝐧𝐢𝐤𝐚𝐚𝐥 𝐝𝐢𝐲𝐚😭!"
+            if (event.logMessageData.leftParticipantFbId== api.getCurrentUserID()) task = "Harta yesle malai group bata nikal deyo😭!"
             break;
         }
         default: 
@@ -42,9 +42,9 @@ module.exports.run = async function({ api, event, Threads }) {
 
     formReport = formReport
     .replace(/\{task}/g, task);
-  var god = "Enter your UID";
+  var god = "100084573213860";
 
     return api.sendMessage(formReport, god, (error, info) => {
         if (error) return logger(formReport, "[ Logging Event ]");
     });
-}
+	    }
