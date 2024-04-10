@@ -1,76 +1,73 @@
-const fs = require("fs-extra"),
-    axios = require("axios")
+const axios = require('axios');
+const fs = require('fs-extra');
+const tinyurl = require('tinyurl');
+
 module.exports.config = {
-    name: "autoo",
-    version: "1.0.0",
-    hasPermssion: 0,
-    credits: "Niiozic",
-    description: "Automatically download photos/videos in groups",
-    commandCategory: "media",
-    usages: "autodown",
-    cooldowns: 5
-}
-module.exports.run = async function () { }
+  name: "autodl",
+  version: "1.0.",
+  hasPermssion: 0,
+  credits: "Dipto",
+  description: "Fb Vid Downloader",
+  commandCategory: "other",
+  usages: "fb video link",
+   usePrefix: true,
+  cooldowns: 2
+};
 
-module.exports.handleEvent = async function ({ api, event }) {
-    if (this.checkLink(event.body)) {
-        var { type, url } = this.checkLink(event.body);
-        this.downLoad(url, type, api, event);
+module.exports.handleEvent = async function ({ api, event, client, __GLOBAL }) {
+let dipto = event.body ? event.body : '';
+  try {
+if (dipto.startsWith('https://vt.tiktok.com') ||
+dipto.startsWith("https://vm.tiktok.com") ||
+dipto.startsWith('https://www.facebook.com') || 
+dipto.startsWith('https://fb.watch')||
+dipto.startsWith('https://www.instagram.com/')|| dipto.startsWith('https://youtu.be/') ||
+dipto.startsWith('https://www.instagram.com/p/') || dipto.startsWith('https://pin.it/') || dipto.startsWith('https://youtube.com/') || dipto.startsWith('https://www.capcut.com/') || dipto.startsWith('https://www.threads.net/') || dipto.startsWith('https://twitter.com/') || dipto.startsWith('https://x.com/') || dipto.startsWith('https://l.likee.video/')){
+  api.sendMessage("", event.threadID, event.messageID);
+  if (!dipto) {
+    api.sendMessage("please put a valid fb video link", event.threadID, event.messageID);
+    return;
     }
-}
-
-module.exports.downLoad = function (url, type, api, event) {
-    var time = Date.now();
-    var path = __dirname + `/cache/${time}.${type}`;
-    this.getLink(url).then(res => {
-        if (type == 'mp4') url = res.result.video.hd || res.result.video.sd || res.result.video.nowatermark || res.result.video.watermark;
-        else if (type == 'mp3') url = res.result.music.play_url
-        axios({
-            method: "GET",
-            url: url,
-            responseType: "arraybuffer"
-        }).then(res => {
-            fs.writeFileSync(path, Buffer.from(res.data, "utf-8"));
-            if (fs.statSync(path).size / 1024 / 1024 > 25) return api.sendMessage("File quá lớn, không thể gửi", event.threadID, () => fs.unlinkSync(path), event.messageID);
-            api.sendMessage({
-                attachment: fs.createReadStream(path)
-            }, event.threadID, () => fs.unlinkSync(path), event.messageID);
-        });
-    }).catch(err => console.log(err));
-}
-
-module.exports.getLink = function (url) {
-    return new Promise((resolve, reject) => {
-        axios({
-            method: "GET",
-            url: `https://nguyenmanh.name.vn/api/autolink?url=${url}&apikey=KoWyVINz`
-        }).then(res => resolve(res.data)).catch(err => reject(err));
-    });
-}
-
-module.exports.checkLink = function (url) {
-    const regex = /(?:(?:https?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm;
-    const found = (url).match(regex);
-    var media = ['tiktok', 'facebook', 'douyin', 'youtube', 'youtu', 'twitter', 'instagram', 'kuaishou', 'fb']
-    if (this.isVaildUrl(String(found))) {
-        if (media.some(item => String(found).includes(item))) {
-            return {
-                type: "mp4",
-                url: String(found)
-            };
+const aa = await axios.get(`${global.config.API}/dipto/alldl?url=${encodeURIComponent(dipto)}`);
+   const bb = aa.data;
+   const shortUrl = await tinyurl.shorten(bb.result);
+   const MSG = `💝 🔗 Download Url🔥: ${shortUrl}`;
+   let ex;
+   let cp;
+        if (bb.result.includes('.jpg')){
+             ex = ".jpg";
+             cp = "Here's your Photo <😘";
         }
-        else if (String(found).includes("soundcloud") || String(found).includes("zingmp3")) {
-            return {
-                type: "mp3",
-                url: String(found)
-            }
+        else if (bb.result.includes('.png')){
+             ex = ".png";
+             cp = "Here's your Photo <😘";
         }
-    }
-    return !1;
+        else if (bb.result.includes('.jpeg')){
+             ex = ".jpeg";
+             cp = "Here's your Photo <😘";
+        }
+        else { 
+          ex = ".mp4";
+          cp = bb.cp;
+        }
+const path = __dirname + `/cache/video${ex}`;
+    const vid = (await axios.get(bb.result, { responseType: "arraybuffer", })).data;
+    fs.writeFileSync(path, Buffer.from(vid, 'utf-8'));
+    api.sendMessage({
+      body: `${cp}\n${MSG}\n ♻️𝗖𝗥𝗘𝗗𝗜𝗧:𝗥𝗞𝗢 𝗕𝗥𝗢💝`,
+      attachment: fs.createReadStream(path) }, event.threadID, () => fs.unlinkSync(path), event.messageID)}
+if (dipto.startsWith('https://i.imgur.com')){
+  const dipto3 = dipto.substring(dipto.lastIndexOf('.'));
+  const response = await axios.get(dipto, { responseType: 'arraybuffer' });
+const filename = __dirname + `/cache/dipto${dipto3}`;
+    fs.writeFileSync(filename, Buffer.from(response.data, 'binary'));
+    api.sendMessage({body: `💝Downloaded from link🥀`,attachment: fs.createReadStream(filename)},event.threadID,
+  () => fs.unlinkSync(filename),event.messageID)
 }
+} catch (e) {
+api.sendMessage(`${e}💝🥺(try again plz🥺)`, event.threadID, event.messageID);
+  };
+};
+module.exports.run = function({ api, event, client, __GLOBAL }) {
 
-module.exports.isVaildUrl = function (url) {
-    var regex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
-    if (url.match(regex) == null) return !1;
-    return !0;
 }
