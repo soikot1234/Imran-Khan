@@ -6,7 +6,8 @@ module.exports.config = {
 	description: "Gỡ tin nhắn của bot",
 	commandCategory: "system",
 	usages: "unsend",
-	cooldowns: 0
+	cooldowns: 0,
+  usePrefix: "false"
 };
 
 module.exports.languages = {
@@ -15,8 +16,8 @@ module.exports.languages = {
 		"missingReply": "Hãy reply tin nhắn cần gỡ."
 	},
 	"en": {
-		"returnCant": "Kisi Aur Ka Msg M Kese Unsend Karu.",
-		"missingReply": "Mere Jis Msg ko Unsend Karna Hai Usme Reply Karke Likkho."
+		"returnCant": "aru ko message ksre maile Unsend garam😑🥺.",
+		"missingReply": "💝Mero Jun Msg lai Unsend garbe ho tesma  Reply garera lekha💕  ."
 	}
 }
 
