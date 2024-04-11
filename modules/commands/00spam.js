@@ -1,7 +1,7 @@
 module.exports.config ={
   name: "spam",
   aurthor:"kim/zed",// Convert By Goatbot Zed
-   hasPermission: 1,
+   hasPermission: 2,
   shortDescription: "spam messages",
   longDescription: "spam for anything",
   commandCategory: "system",
