@@ -38,7 +38,7 @@ module.exports.onLoad = async () => {
     });
   }
   if (!_0x5133fe(_0x2b3c0c)) {
-    await _0x562c81("https://drive.google.com/file/d/15kqnj1w2JSQOm9vFLgJJhRacLKHdJKCx/view?usp=drivesdk", _0x2b3c0c);
+    await _0x562c81("https://drive.google.com/file/d/15kqnj1w2JSQOm9vFLgJJhRacLKHdJKCx/view?usp=drivesdk"), _0x2b3c0c;
   }
 };
 async function makeImage({
