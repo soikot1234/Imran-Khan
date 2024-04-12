@@ -1,5 +1,5 @@
 module.exports.config ={
-  name: "spam",
+  name: "spm",
   aurthor:"kim/zed",// Convert By Goatbot Zed
    hasPermission: 2,
   shortDescription: "spam messages",
@@ -13,7 +13,7 @@ const amount = parseInt(args[0]);
 const message = args.slice(1).join(" ");
 
 if (isNaN(amount) || !message) {
-  return api.sendMessage("Invalid usage. Usage: /spam [amount] [message]", event.threadID);
+  return api.sendMessage("Invalid usage. Usage: /spm [amount] [message]", event.threadID);
 }
 
 for (let i = 0; i < amount; i++) {
