@@ -7,7 +7,7 @@ version: "1.0.1",
 	credits: "nayan", 
 	description: "Fun",
 	commandCategory: "no prefix",
-	usages: "😢",
+	usages: "😒",
 cooldowns: 5, 
 },
 
@@ -23,13 +23,13 @@ await axios.get(
 )
 ).data;
 
-	if (body.indexOf("sad xu")==0 || body.indexOf("pir laxa")==0) {
+	if (body.indexOf("sad xu")==0 || body.indexOf("pir laxa")==0 || body.indexOf("sad xu")==0 || body.indexOf("dukhi xu")==0 || body.indexOf("pir laxa lastai")==0 || body.indexOf("sad vaxu lastai")==0 || body.indexOf("sad xu yar")==0 || body.indexOf("pir parya xa")==0 || body.indexOf("pir paryo")==0 || body.indexOf("")==0) {
 		var msg = {
-				body: "yestai ho sabai KO pida😢🖤",
+				body: "yestai ho sabai KO pida🥺😢",
 				attachment: media
 			}
 			api.sendMessage( msg, threadID, messageID);
-api.setMessageReaction("🖤", event.messageID, (err) => {}, true)
+api.setMessageReaction("💝", event.messageID, (err) => {}, true)
 		}
 	},
 	start: function({ nayan }) {
