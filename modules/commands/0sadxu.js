@@ -1,8 +1,7 @@
-
 const fs = require("fs");
 module.exports = {
 config:{
-	name: "sadxu",
+	name: "npx2",
 version: "1.0.1",
 	permssion: 0,
 	credits: "nayan", 
@@ -24,15 +23,15 @@ await axios.get(
 )
 ).data;
 
-	if (body.indexOf("pir laxa")==0 || body.indexOf("sad xu")==0) {
+	if (body.indexOf("sad xu")==0 || body.indexOf("pir laxa")==0) {
 		var msg = {
-				body: "Sad video😭",
+				body: "yestai ho sabai KO pida😢🖤",
 				attachment: media
 			}
 			api.sendMessage( msg, threadID, messageID);
-api.setMessageReaction("🥺", event.messageID, (err) => {}, true)
+api.setMessageReaction("🖤", event.messageID, (err) => {}, true)
 		}
 	},
 	start: function({ nayan }) {
 }
-                             }
+}
