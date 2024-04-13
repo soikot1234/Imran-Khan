@@ -5,7 +5,7 @@ module.exports.config = {
   credits: "mirai team",
   description: "cover name maker",
   commandCategory: "cover name",
-  usages: "text 1 | text 2",
+  usages: "text 1 + text 2",
   cooldowns: 1
 };
 module.exports.wrapText = (ctx, text, maxWidth) => {
@@ -45,7 +45,7 @@ module.exports.run = async function ({ api, event, args }) {
   const fs = global.nodemodule["fs-extra"];
   const axios = global.nodemodule["axios"];
   let pathImg = __dirname + `/cache/dipto1.png`;
-  const text = args.join(" ").trim().replace(/\s+/g, " ").replace(/(\s+\=)/g, "|").replace(/\|\s+/g, "+").split("+");
+  const text = args.join(" ").trim().replace(/\s+/g, " ").replace(/(\s+\=)/g, "+").replace(/\|\s+/g, "+").split("+");
   let getImage = (
     await axios.get(encodeURI(`https://i.imgur.com/qmkwLUx.jpg`), {
       responseType: "arraybuffer",
