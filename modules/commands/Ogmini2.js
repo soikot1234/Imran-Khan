@@ -4,7 +4,7 @@ global.config = {
 const axios = require("axios");
 
 module.exports.config = {
-  name: "bby",
+  name: "gemini2",
   version: "1.0.0",
   hasPremssion: 0, 
   credits: "dipto", 
