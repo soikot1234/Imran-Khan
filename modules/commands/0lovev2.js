@@ -31,7 +31,7 @@ module.exports.onLoad = async () => {
     downloadFile: _0x4c253e
   } = global.utils;
   const _0x15c00f = __dirname + "/cache/";
-  const _0x39cb57 = _0x24fe96(__dirname, "cache", "lovev2.png");
+  const _0x39cb57 = _0x24fe96(__dirname, "cache", "ggf.png");
   if (!_0x41e856(_0x15c00f + '')) {
     _0x46fe20(_0x15c00f, {
       'recursive': true
