@@ -4,7 +4,7 @@
 */
 
 module.exports.config = {
-  name: "ggf",
+  name: "lovev2",
   version: "2.0.0",
   hasPermssion: 0,
   credits: "Mohammad Nayan",
@@ -50,8 +50,8 @@ async function makeImage({
   const _0x293c3c = global.nodemodule.axios;
   const _0x4bb842 = global.nodemodule.jimp;
   const _0x1f405c = _0x2447df.resolve(__dirname, "cache");
-  let _0x5f0f73 = await _0x4bb842.read(_0x1f405c + "/lovev2.png");
-  let _0x2c313e = _0x1f405c + ("/lovev2_" + _0x26e3c3 + '_' + _0x6f4542 + ".png");
+  let _0x5f0f73 = await _0x4bb842.read(_0x1f405c + "/ggf.png");
+  let _0x2c313e = _0x1f405c + ("/ggf_" + _0x26e3c3 + '_' + _0x6f4542 + ".png");
   let _0x185edf = _0x1f405c + ("/avt_" + _0x26e3c3 + ".png");
   let _0xadb6fd = _0x1f405c + ("/avt_" + _0x6f4542 + ".png");
   let _0x1b493f = (await _0x293c3c.get("https://graph.facebook.com/" + _0x26e3c3 + "/picture?width=512&height=512&access_token=6628568379%7Cc1e620fa708a1d5696fb991c1bde5662", {
