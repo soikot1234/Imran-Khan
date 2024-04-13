@@ -51,7 +51,7 @@ module.exports.run = async function({ api, event, args }) {
 	let pathImg = __dirname + '/cache/ronb2.png';
 	var text = args.join(" ");
 	if (!text) return api.sendMessage("Enter the content of the comment on the board", threadID, messageID);
-	let getPorn = (await axios.get(`https://imgtr.ee/images/2023/06/06/b3rwi.jpg`, { responseType: 'arraybuffer' })).data;
+	let getPorn = (await axios.get(`https://i.ibb.co/vhtV1x9/image.jpg`, { responseType: 'arraybuffer' })).data;
 	fs.writeFileSync(pathImg, Buffer.from(getPorn, 'utf-8'));
 	let baseImage = await loadImage(pathImg);
 	let canvas = createCanvas(baseImage.width, baseImage.height);
