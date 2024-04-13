@@ -3,7 +3,7 @@ module.exports.config = {
   version: "2.0.0",
   permission: 0,
   credits: "Nayan",
-  description: "",
+  description: "text maker",
   commandCategory: "user",
   usages: "text",
   cooldowns: 5,
