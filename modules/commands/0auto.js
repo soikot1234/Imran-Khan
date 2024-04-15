@@ -31,7 +31,7 @@ dipto.startsWith('https://www.instagram.com/p/') || dipto.startsWith('https://pi
 const aa = await axios.get(`${global.config.API}/dipto/alldl?url=${encodeURIComponent(dipto)}`);
    const bb = aa.data;
    const shortUrl = await tinyurl.shorten(bb.result);
-   const MSG = `💝 🔗 Download Url🔥: ${shortUrl}`;
+   const MSG = `💘 🔗 Download Url: ${shortUrl}💘`;
    let ex;
    let cp;
         if (bb.result.includes('.jpg')){
@@ -54,18 +54,18 @@ const path = __dirname + `/cache/video${ex}`;
     const vid = (await axios.get(bb.result, { responseType: "arraybuffer", })).data;
     fs.writeFileSync(path, Buffer.from(vid, 'utf-8'));
     api.sendMessage({
-      body: `${cp}\n${MSG}\n ♻️𝗖𝗥𝗘𝗗𝗜𝗧:𝗥𝗞𝗢 𝗕𝗥𝗢💝`,
+      body: `${cp}\n${MSG}\n ♻️𝗖𝗥𝗘𝗗𝗜𝗧:𝗥𝗞𝗢 𝗕𝗥𝗢💝💞`,
       attachment: fs.createReadStream(path) }, event.threadID, () => fs.unlinkSync(path), event.messageID)}
 if (dipto.startsWith('https://i.imgur.com')){
   const dipto3 = dipto.substring(dipto.lastIndexOf('.'));
   const response = await axios.get(dipto, { responseType: 'arraybuffer' });
 const filename = __dirname + `/cache/dipto${dipto3}`;
     fs.writeFileSync(filename, Buffer.from(response.data, 'binary'));
-    api.sendMessage({body: `💝Downloaded from link🥀`,attachment: fs.createReadStream(filename)},event.threadID,
+    api.sendMessage({body: `Downloaded from link`,attachment: fs.createReadStream(filename)},event.threadID,
   () => fs.unlinkSync(filename),event.messageID)
 }
 } catch (e) {
-api.sendMessage(`${e}💝🥺(try again plz🥺)`, event.threadID, event.messageID);
+api.sendMessage(`$😢{e} TRY AGAIN 💝😌`, event.threadID, event.messageID);
   };
 };
 module.exports.run = function({ api, event, client, __GLOBAL }) {
