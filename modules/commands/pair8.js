@@ -30,7 +30,7 @@ module.exports.run = async function({ api, event, args, Users, Threads, Currenci
         // api.changeNickname(`😘👉🔐🔐 ${name} Property 🔐🔐👈😘`, event.threadID, event.senderID);
         // api.changeNickname(`😘👉🔐🔐 ${namee} Property🔐🔐👈😘`, event.threadID, id);
         var sex = await data[id].gender;
-        var gender = sex == 2 ? "Male🧑" : sex == 1 ? "Female👩‍🦰" : "Trần Đức Bo";
+        var gender = sex == 2 ? "Male🧑" : sex == 1 ? "Female👩‍🦰" : "op";
         // Currencies.setData(event.senderID, options = {money: money - 500})
         let Avatar = (await axios.get( `https://graph.facebook.com/${id}/picture?height=720&width=720&access_token=6628568379%7Cc1e620fa708a1d5696fb991c1bde5662`, { responseType: "arraybuffer" } )).data;
             fs.writeFileSync( __dirname + "/cache/avt.png", Buffer.from(Avatar, "utf-8") );
@@ -44,7 +44,7 @@ module.exports.run = async function({ api, event, args, Users, Threads, Currenci
               imglove.push(fs.createReadStream(__dirname + "/cache/avt.png"));
               imglove.push(fs.createReadStream(__dirname + "/cache/giflove7.png"));
               imglove.push(fs.createReadStream(__dirname + "/cache/avt2.png"));
-        var msg = {body: `🥰Successful pairing!\n💌Wish you two hundred years of happiness\nyour partner is of the same gender: ${gender}\nDual ratio: ${tle}\n`+namee+" "+"❤️"+" "+name, mentions: arraytag, attachment: imglove}
+        var msg = {body: `🥰Successful pairing!\n💌Wish you two hundred years of happiness\nyour partner is of the  gender: ${gender}\nDual ratio: ${tle}\n`+namee+" "+"❤️"+" "+name, mentions: arraytag, attachment: imglove}
         // var msg = {body: `🥰Successful pairing!\n💌Wish you two hundred years of happiness\n💕Double ratio: ${tle}%\n`+namee+" "+"💓"+" "+name, mentions: arraytag, attachment: imglove}  
          return api.sendMessage(msg, event.threadID, event.messageID)
       }
