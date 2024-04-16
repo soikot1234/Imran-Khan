@@ -59,7 +59,7 @@ module.exports.run = async function ({ args, Users, Threads, api, event, Currenc
   var tile = djtme[Math.floor(Math.random() * djtme.length)];
 
   var background = [
-  "https://i.postimg.cc/dVDJCCJk/20240216-214548.png,
+  "https://i.postimg.cc/dVDJCCJk/20240216-214548.png",
   "https://i.postimg.cc/ZKSc0PFH/20240216-214735.png",
   "https://i.postimg.cc/jSzXjY06/Picsart-23-06-10-08-25-38-156.jpg"
   ];
@@ -100,7 +100,7 @@ module.exports.run = async function ({ args, Users, Threads, api, event, Currenc
   fs.writeFileSync(pathImg, imageBuffer);
   fs.removeSync(pathAvt1);
   fs.removeSync(pathAvt2);
-  return api.sendMessage({ body: `Congratulations ${name1} successfully paired with ${name2}\nThe odds are ${tile}%`,
+  return api.sendMessage({ body: `Congratulations💞 ${name1} successfully paired💝 with ${name2}\n❤️The odds are ${tile}%👨‍❤️‍👨`,
             mentions: [{
           tag: `${name2}`,
           id: id2
