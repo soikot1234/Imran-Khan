@@ -77,5 +77,5 @@ const axios = require("axios");
       var sex = await data[id].gender;
       var gender = sex == 2 ? "Male🧑" : sex == 1 ? "Female👩‍🦰" : "Tran Duc Bo";
 var one = senderID, two = id;
-  return makeImage({ one, two }).then(path => api.sendMessage({ body:`Congratulations ${namee} was paired with ${name}\nPair odds are: ${tle}`, mentions: arraytag, attachment: fs.createReadStream(path) }, threadID, () => fs.unlinkSync(path), messageID));
+  return makeImage({ one, two }).then(path => api.sendMessage({ body:`💞Congratulations ${namee} 💝 was paired with ${name} 💝\nPair odds are: ${tle}`🔥, mentions: arraytag, attachment: fs.createReadStream(path) }, threadID, () => fs.unlinkSync(path), messageID));
 }
