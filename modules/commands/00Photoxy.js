@@ -3,7 +3,7 @@ module.exports.config = {
   version: "2.0.0",
   permission: 2,
   credits: "rko bro",
-  description: "",
+  description: "edit",
   prefix: true,
   category: "user",
   usages: "text",
